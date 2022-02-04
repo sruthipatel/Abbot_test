@@ -1,0 +1,31 @@
+import imaplib, email
+user_id ="codechallengeadc@gmail.com"
+password = "P@ssword1234"
+imap_url = "imap.gmail.com"
+imap_port = "993"
+
+def read_email_gmail():
+    try:
+        mail = imaplib.IMAP4_SSL(imap_url,imap_port)
+        mail.login(user_id,password)
+        mail.select('inbox')
+        data= mail.search(None,'ALL')
+        mail_ids = data[1]
+        id_list = mail_ids[0].split()
+        f_id = int(id_list[0])
+
+        for content in f_id:
+            print(content)
+            
+            
+    except Exception as e:
+        print(e)
+
+
+
+
+
+
+
+
+
