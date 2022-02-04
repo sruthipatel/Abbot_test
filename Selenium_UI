@@ -1,0 +1,43 @@
+Author : Sruthi
+Date   : 02/042022
+Description:  Python Selenium code for the given business flow
+
+
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
+driver = webdriver.Chrome('./chromedriver')
+driver.get("https://www.libreview.com/")
+print(driver.title)
+
+Elm_Country = driver.find_element_by_id("country-select")
+Elm_Country.send_keys("United States")
+Elm_Country.send_keys(Keys.RETURN)
+
+Elm_Country = driver.find_element_by_id("language-select")
+Elm_Country.send_keys("English")
+Elm_Country.send_keys(Keys.RETURN)
+
+Elm_Submit = driver.find_element_by_id("submit-button")
+Elm_Submit.click()
+
+Elm_Login_User = driver.find_element_by_id("loginForm-email-input")
+Elm_Login_User.send_keys("codechallengeadc@gmail.com")
+
+Elm_Login_Password = driver.find_element_by_id("password")
+Elm_Login_Password.send_keys("password")
+
+Elm_Login_Button = driver.find_element_by_id("loginForm-submit-button")
+Elm_Login_Button.click()
+
+Elm_Send_Code_button = driver.find_element_by_class_name("twoFactor-step1-next-button")
+Elm_Send_Code_button.click()
+try:
+    if Elm_Send_Code_button.is_enabled() is False:
+        print("The button is disabled")
+
+except Exception as e:
+    print(e)
+
+driver.close()
